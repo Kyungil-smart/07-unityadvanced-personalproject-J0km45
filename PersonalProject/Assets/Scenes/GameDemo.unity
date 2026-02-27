@@ -5462,6 +5462,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 726a4d0555af6894e9984a16fd9efead, type: 3}
+--- !u!4 &484230416 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 364945205682716009, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
+  m_PrefabInstance: {fileID: 2851934527944076259}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &494592805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23833,6 +23838,22 @@ PrefabInstance:
     - target: {fileID: 4879843036912491716, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019722531538185155, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
+      propertyPath: _pitchMax
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019722531538185155, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
+      propertyPath: _pitchMin
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019722531538185155, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
+      propertyPath: _viewPoint
+      value: 
+      objectReference: {fileID: 484230416}
+    - target: {fileID: 5019722531538185155, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
+      propertyPath: _mouseSensitivity
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5019722531538185155, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
       propertyPath: _groundLayer.m_Bits

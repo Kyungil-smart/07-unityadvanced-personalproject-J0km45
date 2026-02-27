@@ -16,6 +16,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Rotation",
+                    "type": "Value",
+                    "id": "448202fb-162f-41c9-a5bb-76d4ccb933ec",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "48c718d5-e829-4dbf-aade-bd735e05dbee",
@@ -37,6 +46,15 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "c8bfcedd-3f58-418d-ba5d-abdfd8c0237d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Aiming",
+                    "type": "Button",
+                    "id": "3e31e683-d255-4936-9220-f80b3560a303",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -129,6 +147,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "42ad2368-963c-432e-9598-4f4479807a0c",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d8d256d-45fd-4f4a-ad2c-853ce52613f4",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aiming",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
