@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
 
         _inputActions.Player.Move.performed += OnMove;
         _inputActions.Player.Move.canceled += MoveCancel;
-        _inputActions.Player.Jump.started += OnJump;
+        _inputActions.Player.Jump.performed += OnJump;
         _inputActions.Player.Sprint.performed += OnSprint;
         _inputActions.Player.Sprint.canceled += SprintCancel;
         _inputActions.Player.Rotation.performed += OnRotation;
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     {
         _inputActions.Player.Move.performed -= OnMove;
         _inputActions.Player.Move.canceled -= MoveCancel;
-        _inputActions.Player.Jump.started -= OnJump;
+        _inputActions.Player.Jump.performed -= OnJump;
         _inputActions.Player.Sprint.performed -= OnSprint;
         _inputActions.Player.Sprint.canceled -= SprintCancel;
         _inputActions.Player.Rotation.performed -= OnRotation;
@@ -113,10 +113,7 @@ public class PlayerController : MonoBehaviour
 
     void OnJump(InputAction.CallbackContext ctx)
     {
-        if (ctx.started)
-        {
-            _jumpInput = true;
-        }
+        _jumpInput = true;
     }
 
     void OnSprint(InputAction.CallbackContext ctx)
