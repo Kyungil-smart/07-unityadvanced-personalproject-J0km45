@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         bool grounded = IsGrounded();
 
         // 바닥에 고정
-        if (grounded)
+        if (grounded && _velocity.y < 0f)
         {
             _velocity.y = -2f;
         }

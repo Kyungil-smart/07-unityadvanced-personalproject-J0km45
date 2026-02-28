@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2198430046755865649}
   - component: {fileID: 6244428797966663621}
   - component: {fileID: 5019722531538185155}
+  - component: {fileID: 947207932930636129}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -79,8 +80,8 @@ CharacterController:
   m_Height: 1
   m_Radius: 0.25
   m_SlopeLimit: 50
-  m_StepOffset: 0.1
-  m_SkinWidth: 0.08
+  m_StepOffset: 0.2
+  m_SkinWidth: 0.025
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &5019722531538185155
@@ -98,13 +99,33 @@ MonoBehaviour:
   _moveSpeed: 1
   _jumpHeight: 0.5
   _mouseSensitivity: 30
-  _pitchMin: -60
+  _pitchMin: -80
   _pitchMax: 80
   _viewPoint: {fileID: 364945205682716009}
   _groundCheckDistance: 0.2
   _groundLayer:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &947207932930636129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663200560047016473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6e2651c21e2b04dad0e2719b6dce58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GunController
+  _fireRange: 10
+  _TargetLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  _maxMagazine: 10
+  _currentMagazine: 0
+  _reloadTime: 1
+  _gunPos: {fileID: 8665487428203861481}
 --- !u!1 &5646232519407910614
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +139,7 @@ GameObject:
   - component: {fileID: 4402792295752704519}
   m_Layer: 0
   m_Name: Weapon Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -340,7 +361,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 375
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -491,15 +512,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5230388304373915761, guid: d105edce4632de1448446bea19675c2b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5230388304373915761, guid: d105edce4632de1448446bea19675c2b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5230388304373915761, guid: d105edce4632de1448446bea19675c2b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5230388304373915761, guid: d105edce4632de1448446bea19675c2b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

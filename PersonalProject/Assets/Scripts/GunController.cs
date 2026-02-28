@@ -1,25 +1,30 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GunController : MonoBehaviour
 {
-    private Camera _camera;
-
-    [SerializeField] private float _fireRange; // 총 사정거리
+    [SerializeField] private float _fireRange = 10f; // 총 사정거리
     [SerializeField] private LayerMask _TargetLayer;
     [SerializeField] private int _maxMagazine = 10; // 최대 탄창 수
     [SerializeField] private int _currentMagazine; // 현재 탄창 수
+    [SerializeField] private float _reloadTime = 1f; // 재장전 시간
+    [SerializeField] private Transform _gunPos;
 
+    private Camera _camera;
     private Vector2 _mousePos;
     private IHittable _currentTarget;
-
+    private bool _isReloading;
     private PlayerInputActions _inputActions;
+    private Quaternion _originalGunPos;
 
     private void Awake()
     {
         _camera = Camera.main;
         _currentMagazine = _maxMagazine;
         _inputActions = new PlayerInputActions();
+        _originalGunPos = _gunPos.localRotation;
     }
 
     private void OnEnable()
@@ -28,12 +33,14 @@ public class GunController : MonoBehaviour
 
         _inputActions.Player.Point.performed += OnPoint;
         _inputActions.Player.Fire.performed += OnFire;
+        _inputActions.Player.Reload.performed += OnReload;
     }
 
     private void OnDisable()
     {
         _inputActions.Player.Point.performed -= OnPoint;
         _inputActions.Player.Fire.performed -= OnFire;
+        _inputActions.Player.Reload.performed -= OnReload;
 
         _inputActions.Disable();
     }
@@ -50,11 +57,45 @@ public class GunController : MonoBehaviour
 
     void OnFire(InputAction.CallbackContext ctx)
     {
+        if (_isReloading) return;
+
         if(_currentMagazine <= 0) return;
         _currentMagazine--;
 
         if (_currentTarget == null) return;
         _currentTarget.OnHit();
+    }
+
+    void OnReload(InputAction.CallbackContext ctx)
+    {
+        if (_currentMagazine == _maxMagazine) return;
+        if (_isReloading) return;
+        
+        StartCoroutine(ReloadCoroutine());
+    }
+
+    IEnumerator MoveGun(Quaternion gunPos)
+    {
+        float angle = Quaternion.Angle(_gunPos.localRotation, gunPos);
+
+        while (Quaternion.Angle(_gunPos.localRotation, gunPos) > 0.1f)
+        {
+            _gunPos.localRotation = Quaternion.RotateTowards(_gunPos.localRotation, gunPos, Time.deltaTime * (angle / _reloadTime) * 2);
+
+            yield return null;
+        }
+    }
+
+    IEnumerator ReloadCoroutine()
+    {
+        _isReloading = true;
+        Quaternion downGunPos = Quaternion.Euler(40f, 0f, 0f);
+        yield return MoveGun(downGunPos);
+
+        _currentMagazine = _maxMagazine;
+        yield return MoveGun(_originalGunPos);
+
+        _isReloading = false;
     }
 
     void DetectTarget()
