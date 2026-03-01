@@ -4171,6 +4171,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2182586553598080429, guid: 4f106067e69e37b4bbc1ece430c67a71, type: 3}
   m_PrefabInstance: {fileID: 314081969}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &320856961 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5400651072927307663, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
+  m_PrefabInstance: {fileID: 2851934527944076259}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &334967107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20908,7 +20913,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1749259446
 MonoBehaviour:
@@ -26512,6 +26517,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 947207932930636129, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
+      propertyPath: aimFOV
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 947207932930636129, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
+      propertyPath: _weaponCamera
+      value: 
+      objectReference: {fileID: 320856961}
+    - target: {fileID: 947207932930636129, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
+      propertyPath: _WeaponLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 4879843036912491716, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -26551,6 +26568,14 @@ PrefabInstance:
     - target: {fileID: 4879843036912491716, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019722531538185155, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
+      propertyPath: _amouseSens
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019722531538185155, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
+      propertyPath: _amoveSpeed
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

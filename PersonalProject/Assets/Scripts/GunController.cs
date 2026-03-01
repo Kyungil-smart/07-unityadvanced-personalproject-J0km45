@@ -6,13 +6,19 @@ using UnityEngine.InputSystem;
 public class GunController : MonoBehaviour
 {
     [SerializeField] private float _fireRange = 10f; // 총 사정거리
-    [SerializeField] private LayerMask _TargetLayer;
     [SerializeField] private int _maxMagazine = 10; // 최대 탄창 수
     [SerializeField] private int _currentMagazine; // 현재 탄창 수
     [SerializeField] private float _reloadTime = 1f; // 재장전 시간
+    [SerializeField] float normalFOV = 60f;
+    [SerializeField] float aimFOV = 10f;
     [SerializeField] private Transform _gunPos;
+    [SerializeField] private LayerMask _TargetLayer;
+    [SerializeField] private Camera _weaponCamera;
+
+    public bool IsAiming { get; private set; }
 
     private Camera _camera;
+    
     private Vector2 _mousePos;
     private IHittable _currentTarget;
     private bool _isReloading;
@@ -34,6 +40,8 @@ public class GunController : MonoBehaviour
         _inputActions.Player.Point.performed += OnPoint;
         _inputActions.Player.Fire.performed += OnFire;
         _inputActions.Player.Reload.performed += OnReload;
+        _inputActions.Player.Aiming.performed += OnAiming;
+        _inputActions.Player.Aiming.canceled += AimingCancel;
     }
 
     private void OnDisable()
@@ -41,6 +49,8 @@ public class GunController : MonoBehaviour
         _inputActions.Player.Point.performed -= OnPoint;
         _inputActions.Player.Fire.performed -= OnFire;
         _inputActions.Player.Reload.performed -= OnReload;
+        _inputActions.Player.Aiming.performed -= OnAiming;
+        _inputActions.Player.Aiming.canceled -= AimingCancel;
 
         _inputActions.Disable();
     }
@@ -71,7 +81,28 @@ public class GunController : MonoBehaviour
         if (_currentMagazine == _maxMagazine) return;
         if (_isReloading) return;
         
+        if(IsAiming) SetAiming(false);
+
         StartCoroutine(ReloadCoroutine());
+    }
+
+    void OnAiming(InputAction.CallbackContext ctx)
+    {
+        if (_isReloading) return;
+
+        SetAiming(true);
+    }
+
+    void AimingCancel(InputAction.CallbackContext ctx)
+    {
+        SetAiming(false);
+    }
+
+    public void SetAiming(bool isAiming)
+    {
+        IsAiming = isAiming;
+        _weaponCamera.enabled = !isAiming;
+        _camera.fieldOfView = isAiming ? aimFOV : normalFOV;
     }
 
     IEnumerator MoveGun(Quaternion gunPos)

@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 1f;  // 이동 속도
     [SerializeField] private float _jumpHeight = 0.5f;  // 점프 높이
-    [SerializeField] private float _mouseSensitivity = 30f;  // 마우스 감도
+    [SerializeField] private float _mouseSens = 30f;  // 마우스 감도
     [SerializeField] private float _pitchMin = -60f;  // 시점 최소 각도
     [SerializeField] private float _pitchMax = 80f;  // 시점 최대 각도
     [SerializeField] private Transform _viewPoint;
@@ -14,7 +14,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;  // 지면으로 인식할 레이어
 
     private CharacterController _controller;
+    private GunController _gun;
 
+    private float _curMoveSpeed;
+    private float _curMouseSens;
     private Vector3 _velocity;
     private Vector2 _moveInput;
     private bool _jumpInput;
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
+        _gun = GetComponent<GunController>();
         _inputActions = new PlayerInputActions();
     }
 
@@ -58,9 +62,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        _curMoveSpeed = _gun.IsAiming ? _moveSpeed * 0.5f : _moveSpeed;
+        _curMouseSens = _gun.IsAiming ? _mouseSens * 0.2f : _mouseSens;
+
         // 회전
-        float mouseX = _rotationInput.x * _mouseSensitivity * Time.deltaTime;
-        float mouseY = _rotationInput.y * _mouseSensitivity * Time.deltaTime;
+        float mouseX = _rotationInput.x * _curMouseSens * Time.deltaTime;
+        float mouseY = _rotationInput.y * _curMouseSens * Time.deltaTime;
         transform.Rotate(Vector3.up * mouseX);
 
         _pitch -= mouseY;
@@ -78,13 +85,14 @@ public class PlayerController : MonoBehaviour
         // 점프
         if (_jumpInput && grounded)
         {
+            if(_gun.IsAiming) _gun.SetAiming(false);
             _velocity.y = Mathf.Sqrt(_jumpHeight * -2f * Physics.gravity.y);
         }
         _jumpInput = false;
 
         // 이동
         Vector3 move = transform.right * _moveInput.x + transform.forward * _moveInput.y;
-        float currentSpeed = _sprintInput ? _moveSpeed * 2f : _moveSpeed;
+        float currentSpeed = _sprintInput ? _curMoveSpeed * 2f : _curMoveSpeed;
         _controller.Move(move * currentSpeed * Time.deltaTime);
 
         _velocity.y += Physics.gravity.y * Time.deltaTime;
