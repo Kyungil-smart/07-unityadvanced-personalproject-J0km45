@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _moveSpeed: 1
   _jumpHeight: 0.5
-  _mouseSensitivity: 30
+  _mouseSens: 30
   _pitchMin: -80
   _pitchMax: 80
   _viewPoint: {fileID: 364945205682716009}
@@ -119,13 +119,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunController
   _fireRange: 10
-  _TargetLayer:
-    serializedVersion: 2
-    m_Bits: 256
   _maxMagazine: 10
   _currentMagazine: 0
   _reloadTime: 1
+  normalFOV: 60
+  aimFOV: 10
   _gunPos: {fileID: 8665487428203861481}
+  _TargetLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  _weaponCamera: {fileID: 5400651072927307663}
 --- !u!1 &5646232519407910614
 GameObject:
   m_ObjectHideFlags: 0
