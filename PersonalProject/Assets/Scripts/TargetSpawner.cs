@@ -37,6 +37,7 @@ public class TargetSpawner : MonoBehaviour
     public void NotifyDestroy(Target target)
     {
         target.OnDestroyed -= NotifyDestroy;
+        GameManager.Instance.AddScore();
         _spawnPoints.Add(target.SpawnPoint);
         _targetCount--;
         SpawnTarget();
