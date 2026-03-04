@@ -10,6 +10,7 @@ public class GunController : MonoBehaviour
     [SerializeField] private float _reloadTime = 1f; // 재장전 시간
     [SerializeField] float normalFOV = 60f;
     [SerializeField] float aimFOV = 10f;
+
     [SerializeField] private Transform _gunPos;
     [SerializeField] private LayerMask _TargetLayer;
     [SerializeField] private Camera _weaponCamera;
@@ -42,14 +43,10 @@ public class GunController : MonoBehaviour
         _inputActions.Player.Reload.performed += OnReload;
         _inputActions.Player.Aiming.performed += OnAiming;
         _inputActions.Player.Aiming.canceled += AimingCancel;
-
-        _model.OnMagazineChanged += _gameView.UpdateMagazine;
     }
 
     private void OnDisable()
     {
-        _model.OnMagazineChanged -= _gameView.UpdateMagazine;
-
         _inputActions.Player.Point.performed -= OnPoint;
         _inputActions.Player.Fire.performed -= OnFire;
         _inputActions.Player.Reload.performed -= OnReload;
@@ -74,6 +71,7 @@ public class GunController : MonoBehaviour
         if (_isReloading) return;
 
         if (!_model.TryFire()) return;
+        _gameView.UpdateMagazine(_model.CurrentMagazine, _model.MaxMagazine);
 
         if (_currentTarget == null) return;
         _currentTarget.OnHit();
@@ -128,6 +126,7 @@ public class GunController : MonoBehaviour
         yield return MoveGun(downGunPos);
 
         _model.Reload();
+        _gameView.UpdateMagazine(_model.CurrentMagazine, _model.MaxMagazine);
         yield return MoveGun(_originalGunPos);
 
         _isReloading = false;

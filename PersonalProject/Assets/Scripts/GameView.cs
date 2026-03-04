@@ -4,13 +4,13 @@ using TMPro;
 
 public class GameView : MonoBehaviour
 {
-    [SerializeField] TMP_Text _scoreText;
-    [SerializeField] TMP_Text _timeText;
-    [SerializeField] TMP_Text _curMagazineText;
-    [SerializeField] TMP_Text _maxMagazineText;
-    [SerializeField] Image _crosshair;
-    [SerializeField] Sprite _normalCrosshair;
-    [SerializeField] Sprite _aimCrosshair;
+    [SerializeField] private TMP_Text _scoreText;
+    [SerializeField] private TMP_Text _timeText;
+    [SerializeField] private TMP_Text _curMagazineText;
+    [SerializeField] private TMP_Text _maxMagazineText;
+    [SerializeField] private Image _crosshair;
+    [SerializeField] private Sprite _normalCrosshair;
+    [SerializeField] private Sprite _aimCrosshair;
 
     public void UpdateScore(int score)
     {

@@ -7,8 +7,6 @@ public class GunModel
     public bool IsAiming { get; private set; }
     public bool IsMagazineFull() => CurrentMagazine == MaxMagazine;
 
-    public event Action<int, int> OnMagazineChanged;
-
     public GunModel(int maxMagazine)
     {
         MaxMagazine = maxMagazine;
@@ -21,7 +19,6 @@ public class GunModel
         if (CurrentMagazine <= 0) return false;
 
         CurrentMagazine--;
-        OnMagazineChanged?.Invoke(CurrentMagazine, MaxMagazine);
         return true;
     }
 
@@ -33,6 +30,5 @@ public class GunModel
     public void Reload()
     {
         CurrentMagazine = MaxMagazine;
-        OnMagazineChanged?.Invoke(CurrentMagazine, MaxMagazine);
     }
 }

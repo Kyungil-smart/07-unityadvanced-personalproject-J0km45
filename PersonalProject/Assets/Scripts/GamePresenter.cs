@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class GamePresenter : MonoBehaviour
 {
-    [SerializeField] private float _timeLimit = 60f;
-    [SerializeField] private int _scoreIncrement = 10;
+    [SerializeField] private float _timeLimit = 90f; // 제한시간
+    [SerializeField] private int _scoreIncrement = 10; // 점수증가량
 
     [SerializeField] private GameView _gameView;
+    [SerializeField] private GameOverView _gameOverView;
 
     private GameModel _model;
 
@@ -19,25 +20,29 @@ public class GamePresenter : MonoBehaviour
         GameStart();
     }
 
-    private void OnEnable()
-    {
-        _model.OnScoreChanged += _gameView.UpdateScore;
-    }
-
-    private void OnDisable()
-    {
-        _model.OnScoreChanged -= _gameView.UpdateScore;
-    }
-
     private void Update()
     {
         UpdateTime();
+
+        if (_model.IsGameOver)
+        {
+            GameOver();
+            ShowGameResult();
+        }
     }
 
     void GameStart()
     {
+        _gameOverView.ShowGameOver(_model.IsGameOver);
+        _gameOverView.CursorLock(!_model.IsGameOver);
         _gameView.UpdateScore(_model.Score);
         _gameView.UpdateTime(_model.TimeLimit);
+    }
+
+    public void AddScore()
+    {
+        _model.AddScore();
+        _gameView.UpdateScore(_model.Score);
     }
 
     void UpdateTime()
@@ -46,8 +51,24 @@ public class GamePresenter : MonoBehaviour
         _gameView.UpdateTime(_model.TimeLimit);
     }
 
-    public void AddScore() // 스포너의 점수 추가함수에서 호출
+    void GameOver()
     {
-        _model.AddScore();
+        Time.timeScale = 0f;
+        _gameOverView.ShowGameOver(_model.IsGameOver);
+        _gameOverView.CursorLock(!_model.IsGameOver);   
+    }
+
+    void ShowGameResult()
+    {
+        int totalScore = _model.Score;
+        int bestScore = PlayerPrefs.GetInt("BestScore", 0);
+
+        if (totalScore > bestScore)
+        {
+            PlayerPrefs.SetInt("BestScore", totalScore);
+            bestScore = totalScore;
+        }
+
+        _gameOverView.UpdateScore(totalScore, bestScore);
     }
 }

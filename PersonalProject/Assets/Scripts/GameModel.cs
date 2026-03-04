@@ -6,10 +6,7 @@ public class GameModel
     public float TimeLimit { get; private set; }
     public bool IsGameOver { get; private set; }
 
-    private int _scoreIncrement;
-
-    public event Action<int> OnScoreChanged;
-    public event Action<bool> OnGameOver;
+    private readonly int _scoreIncrement;
 
     public GameModel(float _timeLimit, int scoreIncrement)
     {
@@ -22,7 +19,6 @@ public class GameModel
     public void AddScore()
     {
         Score += _scoreIncrement;
-        OnScoreChanged?.Invoke(Score);
     }
 
     public void UpdateTime(float time)
@@ -33,13 +29,7 @@ public class GameModel
 
         if (TimeLimit <= 0)
         {
-            GameOver();
+            IsGameOver = true;
         }
-    }
-
-    public void GameOver()
-    {
-        IsGameOver = true;
-        OnGameOver?.Invoke(IsGameOver);
     }
 }
