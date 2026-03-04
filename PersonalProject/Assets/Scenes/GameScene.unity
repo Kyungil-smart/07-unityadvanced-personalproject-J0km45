@@ -824,10 +824,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 2012736787}
     m_Modifications:
     - target: {fileID: 3093389331010121263, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
-      propertyPath: m_RootOrder
-      value: 336
-      objectReference: {fileID: 0}
-    - target: {fileID: 3093389331010121263, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.9
       objectReference: {fileID: 0}
@@ -867,6 +863,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6032563038501748429, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
+      propertyPath: _respawnPoint
+      value: 
+      objectReference: {fileID: 1047499787}
     - target: {fileID: 6150265035620361378, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
       propertyPath: m_Name
       value: Rocks_5 (3)
@@ -1060,6 +1060,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6032563038501748429, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
+      propertyPath: _respawnPoint
+      value: 
+      objectReference: {fileID: 1047499787}
     - target: {fileID: 6150265035620361378, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
       propertyPath: m_Name
       value: Rocks_5
@@ -1608,6 +1612,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6032563038501748429, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
+      propertyPath: _respawnPoint
+      value: 
+      objectReference: {fileID: 1047499787}
     - target: {fileID: 6150265035620361378, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
       propertyPath: m_Name
       value: Rocks_5 (4)
@@ -2451,6 +2459,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6032563038501748429, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
+      propertyPath: _respawnPoint
+      value: 
+      objectReference: {fileID: 1047499787}
     - target: {fileID: 6150265035620361378, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
       propertyPath: m_Name
       value: Rocks_5 (2)
@@ -3614,6 +3626,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6032563038501748429, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
+      propertyPath: _respawnPoint
+      value: 
+      objectReference: {fileID: 1047499787}
     - target: {fileID: 6150265035620361378, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
       propertyPath: m_Name
       value: Rocks_5 (1)
@@ -14326,7 +14342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1009869074}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: TargetSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14723,6 +14739,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1418059963432224869, guid: d3be3902f0af21d40b381cd77208daa0, type: 3}
   m_PrefabInstance: {fileID: 1040443785}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1047499786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1047499787}
+  m_Layer: 0
+  m_Name: PlayerRespawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1047499787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047499786}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 0.5, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1053808633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17918,6 +17965,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6032563038501748429, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
+      propertyPath: _respawnPoint
+      value: 
+      objectReference: {fileID: 1047499787}
     - target: {fileID: 6150265035620361378, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
       propertyPath: m_Name
       value: Rocks_5 (5)
@@ -22159,6 +22210,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6032563038501748429, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
+      propertyPath: _respawnPoint
+      value: 
+      objectReference: {fileID: 1047499787}
     - target: {fileID: 6150265035620361378, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
       propertyPath: m_Name
       value: Rocks_5 (7)
@@ -24097,6 +24152,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6032563038501748429, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
+      propertyPath: _respawnPoint
+      value: 
+      objectReference: {fileID: 1047499787}
     - target: {fileID: 6150265035620361378, guid: e9b551c76184320419f587ff8c3e25be, type: 3}
       propertyPath: m_Name
       value: Rocks_5 (6)
@@ -25425,6 +25484,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4657362920518854103, guid: d3be3902f0af21d40b381cd77208daa0, type: 3}
+      propertyPath: _respawnPoint
+      value: 
+      objectReference: {fileID: 1047499787}
     - target: {fileID: 9087054840095548406, guid: d3be3902f0af21d40b381cd77208daa0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -29949,6 +30012,7 @@ SceneRoots:
   - {fileID: 2012736787}
   - {fileID: 248756223}
   - {fileID: 1009869074}
+  - {fileID: 1047499787}
   - {fileID: 2851934527944076259}
   - {fileID: 1378779901}
   - {fileID: 1687872741}

@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class StartButton : MonoBehaviour
+public class StartButton : MonoBehaviour, IInteractable
 {
     [SerializeField] private TargetSpawner _spawner;
     [SerializeField] private GamePresenter _presenter;
     private bool _isPressed;
-    public void Press()
+
+    public void OnInteract(PlayerController player)
     {
         if (!_isPressed)
         {

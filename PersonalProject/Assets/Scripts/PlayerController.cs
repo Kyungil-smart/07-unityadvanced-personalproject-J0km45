@@ -146,9 +146,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if(hit.collider.TryGetComponent<StartButton>(out StartButton button))
+        if(hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
         {
-            button.Press();
+            interactable.OnInteract(this);
         }
     }
 }
