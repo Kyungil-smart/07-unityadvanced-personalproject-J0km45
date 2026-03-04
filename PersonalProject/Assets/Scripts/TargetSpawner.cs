@@ -9,7 +9,7 @@ public class TargetSpawner : MonoBehaviour
     [SerializeField] private int _targetCount; // 생성된 타겟 수
     [SerializeField] private GamePresenter _presenter;
 
-    private void Start()
+    public void GameStart()
     {
         SpawnTarget();
     }

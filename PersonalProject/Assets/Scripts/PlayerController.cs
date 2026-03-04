@@ -143,4 +143,12 @@ public class PlayerController : MonoBehaviour
     {
         _rotationInput = Vector2.zero;
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.collider.TryGetComponent<StartButton>(out StartButton button))
+        {
+            button.Press();
+        }
+    }
 }

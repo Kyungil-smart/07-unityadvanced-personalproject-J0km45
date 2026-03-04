@@ -20,7 +20,6 @@ public class GameView : MonoBehaviour
     public void UpdateTime(float time)
     {
         int timeint = (int)time;
-        timeint = Mathf.Max(timeint, 0);
 
         int minutes = timeint / 60;
         int seconds = timeint % 60;

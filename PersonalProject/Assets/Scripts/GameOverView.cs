@@ -15,8 +15,8 @@ public class GameOverView : MonoBehaviour
 
     public void UpdateScore(int totalScore, int bestScore)
     {
-        _totalScore.text = $"SCORE : {totalScore.ToString()}";
-        _bestScore.text = $" BEST SCORE : {bestScore.ToString()}";
+        _totalScore.text = $"SCORE : {totalScore}";
+        _bestScore.text = $" BEST SCORE : {bestScore}";
     }
 
     public void CursorLock(bool isLocked)

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,10 +14,9 @@ public class GunController : MonoBehaviour
     [SerializeField] private LayerMask _TargetLayer;
     [SerializeField] private Camera _weaponCamera;
     [SerializeField] private GameView _gameView;
-    
+
     private GunModel _model;
     public bool IsAiming => _model != null && _model.IsAiming;
-    private bool _isReloading;
 
     private Camera _camera;
     private Vector2 _mousePos;
@@ -68,7 +66,7 @@ public class GunController : MonoBehaviour
 
     void OnFire(InputAction.CallbackContext ctx)
     {
-        if (_isReloading) return;
+        if (_model.IsReloading) return;
 
         if (!_model.TryFire()) return;
         _gameView.UpdateMagazine(_model.CurrentMagazine, _model.MaxMagazine);
@@ -79,17 +77,17 @@ public class GunController : MonoBehaviour
 
     void OnReload(InputAction.CallbackContext ctx)
     {
-        if (_model.IsMagazineFull()) return;
-        if (_isReloading) return;
-        
-        if(_model.IsAiming) SetAiming(false);
+        if (_model.IsMagazineFull) return;
+        if (_model.IsReloading) return;
+
+        if (_model.IsAiming) SetAiming(false);
 
         StartCoroutine(ReloadCoroutine());
     }
 
     void OnAiming(InputAction.CallbackContext ctx)
     {
-        if (_isReloading) return;
+        if (_model.IsReloading) return;
 
         SetAiming(true);
     }
@@ -121,7 +119,7 @@ public class GunController : MonoBehaviour
 
     IEnumerator ReloadCoroutine()
     {
-        _isReloading = true;
+        _model.SetReloading(true);
         Quaternion downGunPos = Quaternion.Euler(40f, 0f, 0f);
         yield return MoveGun(downGunPos);
 
@@ -129,7 +127,7 @@ public class GunController : MonoBehaviour
         _gameView.UpdateMagazine(_model.CurrentMagazine, _model.MaxMagazine);
         yield return MoveGun(_originalGunPos);
 
-        _isReloading = false;
+        _model.SetReloading(false);
     }
 
     void DetectTarget()
@@ -137,9 +135,9 @@ public class GunController : MonoBehaviour
         Ray ray = _camera.ScreenPointToRay(_mousePos);
         RaycastHit hit;
 
-        if(Physics.Raycast(ray, out hit, _fireRange, _TargetLayer))
+        if (Physics.Raycast(ray, out hit, _fireRange, _TargetLayer))
         {
-            if(hit.transform.TryGetComponent<IHittable>(out IHittable hittable))
+            if (hit.transform.TryGetComponent<IHittable>(out IHittable hittable))
             {
                 _currentTarget = hittable;
             }

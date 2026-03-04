@@ -13,7 +13,6 @@ public class Target : MonoBehaviour, IHittable
 
     public void OnHit()
     {
-        // TODO: 점수 추가
         OnDestroyed?.Invoke(this);
         Destroy(gameObject);
     }

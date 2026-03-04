@@ -9,6 +9,7 @@ public class GamePresenter : MonoBehaviour
     [SerializeField] private GameOverView _gameOverView;
 
     private GameModel _model;
+    private bool _isEnd;
 
     private void Awake()
     {
@@ -22,10 +23,14 @@ public class GamePresenter : MonoBehaviour
 
     private void Update()
     {
-        UpdateTime();
-
-        if (_model.IsGameOver)
+        if (_model.IsWaveStart)
         {
+            UpdateTime();
+        }
+
+        if (_model.IsGameOver && !_isEnd)
+        {
+            _isEnd = true;
             GameOver();
             ShowGameResult();
         }
@@ -39,6 +44,11 @@ public class GamePresenter : MonoBehaviour
         _gameView.UpdateTime(_model.TimeLimit);
     }
 
+    public void WaveStart()
+    {
+        _model.SetWaveStart(true);
+    }
+
     public void AddScore()
     {
         _model.AddScore();
@@ -47,7 +57,15 @@ public class GamePresenter : MonoBehaviour
 
     void UpdateTime()
     {
-        _model.UpdateTime(Time.deltaTime);
+        if (_model.IsGameOver) return;
+
+        _model.DecreaseTime(Time.deltaTime);
+        if (_model.TimeLimit <= 0)
+        {
+            _model.SetTimeToZero();
+            _model.SetGameOver(true);
+        }
+
         _gameView.UpdateTime(_model.TimeLimit);
     }
 
