@@ -7,6 +7,7 @@ public class TargetSpawner : MonoBehaviour
     [SerializeField] private GameObject _targetPrefab; // 타겟
     [SerializeField] private int _maxTargetCount = 10; // 최대 타겟 수
     [SerializeField] private int _targetCount; // 생성된 타겟 수
+    [SerializeField] private GamePresenter _presenter;
 
     private void Start()
     {
@@ -37,7 +38,7 @@ public class TargetSpawner : MonoBehaviour
     public void NotifyDestroy(Target target)
     {
         target.OnDestroyed -= NotifyDestroy;
-        GameManager.Instance.AddScore();
+        _presenter.AddScore();
         _spawnPoints.Add(target.SpawnPoint);
         _targetCount--;
         SpawnTarget();

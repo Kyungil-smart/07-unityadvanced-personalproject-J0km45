@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,28 +7,28 @@ public class GunController : MonoBehaviour
 {
     [SerializeField] private float _fireRange = 10f; // 총 사정거리
     [SerializeField] private int _maxMagazine = 10; // 최대 탄창 수
-    [SerializeField] private int _currentMagazine; // 현재 탄창 수
     [SerializeField] private float _reloadTime = 1f; // 재장전 시간
     [SerializeField] float normalFOV = 60f;
     [SerializeField] float aimFOV = 10f;
     [SerializeField] private Transform _gunPos;
     [SerializeField] private LayerMask _TargetLayer;
     [SerializeField] private Camera _weaponCamera;
-
-    public bool IsAiming { get; private set; }
+    [SerializeField] private GameView _gameView;
+    
+    private GunModel _model;
+    public bool IsAiming => _model != null && _model.IsAiming;
+    private bool _isReloading;
 
     private Camera _camera;
-    
     private Vector2 _mousePos;
     private IHittable _currentTarget;
-    private bool _isReloading;
     private PlayerInputActions _inputActions;
     private Quaternion _originalGunPos;
 
     private void Awake()
     {
+        _model = new GunModel(_maxMagazine);
         _camera = Camera.main;
-        _currentMagazine = _maxMagazine;
         _inputActions = new PlayerInputActions();
         _originalGunPos = _gunPos.localRotation;
     }
@@ -42,10 +42,14 @@ public class GunController : MonoBehaviour
         _inputActions.Player.Reload.performed += OnReload;
         _inputActions.Player.Aiming.performed += OnAiming;
         _inputActions.Player.Aiming.canceled += AimingCancel;
+
+        _model.OnMagazineChanged += _gameView.UpdateMagazine;
     }
 
     private void OnDisable()
     {
+        _model.OnMagazineChanged -= _gameView.UpdateMagazine;
+
         _inputActions.Player.Point.performed -= OnPoint;
         _inputActions.Player.Fire.performed -= OnFire;
         _inputActions.Player.Reload.performed -= OnReload;
@@ -69,8 +73,7 @@ public class GunController : MonoBehaviour
     {
         if (_isReloading) return;
 
-        if(_currentMagazine <= 0) return;
-        _currentMagazine--;
+        if (!_model.TryFire()) return;
 
         if (_currentTarget == null) return;
         _currentTarget.OnHit();
@@ -78,10 +81,10 @@ public class GunController : MonoBehaviour
 
     void OnReload(InputAction.CallbackContext ctx)
     {
-        if (_currentMagazine == _maxMagazine) return;
+        if (_model.IsMagazineFull()) return;
         if (_isReloading) return;
         
-        if(IsAiming) SetAiming(false);
+        if(_model.IsAiming) SetAiming(false);
 
         StartCoroutine(ReloadCoroutine());
     }
@@ -100,9 +103,10 @@ public class GunController : MonoBehaviour
 
     public void SetAiming(bool isAiming)
     {
-        IsAiming = isAiming;
+        _model.SetAiming(isAiming);
         _weaponCamera.enabled = !isAiming;
         _camera.fieldOfView = isAiming ? aimFOV : normalFOV;
+        _gameView.UpdateCrosshair(isAiming);
     }
 
     IEnumerator MoveGun(Quaternion gunPos)
@@ -123,7 +127,7 @@ public class GunController : MonoBehaviour
         Quaternion downGunPos = Quaternion.Euler(40f, 0f, 0f);
         yield return MoveGun(downGunPos);
 
-        _currentMagazine = _maxMagazine;
+        _model.Reload();
         yield return MoveGun(_originalGunPos);
 
         _isReloading = false;
