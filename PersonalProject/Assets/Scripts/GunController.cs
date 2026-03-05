@@ -30,6 +30,7 @@ public class GunController : MonoBehaviour
         _model = new GunModel(_maxMagazine);
         _camera = Camera.main;
         _originalGunPos = _gunPos.localRotation;
+        _input.Init();
     }
 
     private void OnEnable()

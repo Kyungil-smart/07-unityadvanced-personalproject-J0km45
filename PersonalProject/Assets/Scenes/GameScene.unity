@@ -29707,7 +29707,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 947207932930636129, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
+    - target: {fileID: 1669823700234546361, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
       propertyPath: _gameView
       value: 
       objectReference: {fileID: 1687872742}
@@ -29751,7 +29751,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8244451732760500654, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
+    - target: {fileID: 6569503854995536024, guid: ed9870178b1957548afa55e1e649a2c5, type: 3}
       propertyPath: _presenter
       value: 
       objectReference: {fileID: 1378779902}

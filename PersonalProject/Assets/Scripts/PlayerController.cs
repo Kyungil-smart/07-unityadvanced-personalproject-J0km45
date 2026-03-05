@@ -31,8 +31,9 @@ public class PlayerController : MonoBehaviour
     {
         _controller = GetComponent<CharacterController>();
         _gun = GetComponent<GunController>();
+        _input.Init();
     }
-
+    
     private void OnEnable()
     {
         _input.InputActions.Player.Move.performed += OnMove;

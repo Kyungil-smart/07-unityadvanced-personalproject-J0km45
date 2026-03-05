@@ -4,11 +4,19 @@ using UnityEngine.InputSystem;
 public class PlayerInputController : MonoBehaviour
 {
     [SerializeField] private GamePresenter _presenter;
-    public PlayerInputActions InputActions { get; private set; }
+    public PlayerInputActions InputActions { get; private set; } 
 
     private void Awake()
     {
-        InputActions = new PlayerInputActions();
+        Init();
+    }
+
+    public void Init()
+    {
+        if (InputActions == null)
+        {
+            InputActions = new PlayerInputActions();
+        }
     }
 
     private void OnEnable()
