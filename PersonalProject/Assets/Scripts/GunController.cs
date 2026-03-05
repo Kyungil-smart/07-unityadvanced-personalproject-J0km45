@@ -15,6 +15,9 @@ public class GunController : MonoBehaviour
     [SerializeField] private Camera _weaponCamera;
     [SerializeField] private GameView _gameView;
 
+    [SerializeField] private AudioClip _fireClip;
+    [SerializeField] private AudioClip _reloadClip;
+
     private GunModel _model;
     public bool IsAiming => _model != null && _model.IsAiming;
 
@@ -66,6 +69,7 @@ public class GunController : MonoBehaviour
         if (_model.IsReloading) return;
 
         if (!_model.TryFire()) return;
+        AudioManager.Instance.PlaySound(AudioManager.Instance._source, _fireClip);
         _gameView.UpdateMagazine(_model.CurrentMagazine, _model.MaxMagazine);
 
         if (_currentTarget == null) return;
@@ -117,6 +121,7 @@ public class GunController : MonoBehaviour
     IEnumerator ReloadCoroutine()
     {
         _model.SetReloading(true);
+        AudioManager.Instance.PlaySound(AudioManager.Instance._source,_reloadClip);
         Quaternion downGunPos = Quaternion.Euler(40f, 0f, 0f);
         yield return MoveGun(downGunPos);
 

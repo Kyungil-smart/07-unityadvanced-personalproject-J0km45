@@ -21,7 +21,7 @@ public class GameModel
 
     public void SetWaveStart(bool isWaveStart)
     {
-        IsWaveStart = isWaveStart; 
+        IsWaveStart = isWaveStart;
     }
 
     public void TogglePause()

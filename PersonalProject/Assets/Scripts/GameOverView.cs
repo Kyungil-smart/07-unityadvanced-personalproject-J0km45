@@ -18,9 +18,9 @@ public class GameOverView : MonoBehaviour
         _bestScore.text = $" BEST SCORE : {bestScore}";
     }
 
-    public void CursorLock(bool isLocked)
+    public void CursorLock(bool showCursor)
     {
-        Cursor.lockState = isLocked ? CursorLockMode.Locked : CursorLockMode.None;
-        Cursor.visible = !isLocked;
+        Cursor.lockState = showCursor ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = showCursor;
     }
 }

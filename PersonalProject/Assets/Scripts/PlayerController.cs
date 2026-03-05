@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _groundCheckDistance = 0.2f;  // 레이를 쏠 거리
     [SerializeField] private LayerMask _groundLayer;  // 지면으로 인식할 레이어
 
+    [SerializeField] private AudioSource _source;
+    [SerializeField] private AudioClip _walkClip;
+
     private CharacterController _controller;
     private GunController _gun;
 
@@ -93,6 +96,8 @@ public class PlayerController : MonoBehaviour
 
         _velocity.y += Physics.gravity.y * Time.deltaTime;
         _controller.Move(_velocity * Time.deltaTime);
+
+        Footstep(grounded);
     }
 
     bool IsGrounded()
@@ -103,6 +108,18 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(ray, Vector3.down, out RaycastHit hit, _groundCheckDistance, _groundLayer)) return true;
 
         return false;
+    }
+
+    void Footstep(bool grounded)
+    {
+        bool isMoving = _moveInput.sqrMagnitude > 0.01f;
+
+        if (!grounded || !isMoving) return;
+
+        if (!_source.isPlaying)
+        {
+            AudioManager.Instance.PlaySound(_source, _walkClip);
+        }
     }
 
     void OnMove(InputAction.CallbackContext ctx)

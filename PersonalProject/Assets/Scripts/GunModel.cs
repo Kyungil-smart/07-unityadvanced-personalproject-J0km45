@@ -1,3 +1,5 @@
+using System;
+
 public class GunModel
 {
     public int MaxMagazine { get; private set; } // 최대 탄창 수
@@ -27,7 +29,7 @@ public class GunModel
 
     public void SetReloading(bool isReloading)
     {
-        IsReloading= isReloading;
+        IsReloading = isReloading;
     }
 
     public void Reload()

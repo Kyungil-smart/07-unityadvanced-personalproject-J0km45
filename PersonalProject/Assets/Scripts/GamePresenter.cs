@@ -10,6 +10,9 @@ public class GamePresenter : MonoBehaviour
     [SerializeField] private PauseView _pauseView;
     [SerializeField] private GameOverView _gameOverView;
 
+    [SerializeField] private AudioClip _gameOverClip;
+    [SerializeField] private AudioClip _scoreClip;
+
     private GameModel _model;
     private bool _isPaused;
     private bool _isEnd;
@@ -32,7 +35,7 @@ public class GamePresenter : MonoBehaviour
             UpdateTime();
         }
 
-        if(_model.IsGamePause != _isPaused)
+        if (_model.IsGamePause != _isPaused)
         {
             GamePause();
             _isPaused = _model.IsGamePause;
@@ -49,7 +52,7 @@ public class GamePresenter : MonoBehaviour
     void GameStart()
     {
         _gameOverView.ShowGameOver(_model.IsGameOver);
-        _gameOverView.CursorLock(!_model.IsGameOver);
+        _gameOverView.CursorLock(_model.IsGameOver);
         _gameView.UpdateScore(_model.Score);
         _gameView.UpdateTime(_model.TimeLimit);
     }
@@ -62,6 +65,7 @@ public class GamePresenter : MonoBehaviour
     public void AddScore()
     {
         _model.AddScore();
+        AudioManager.Instance.PlaySound(AudioManager.Instance._source, _scoreClip);
         _gameView.UpdateScore(_model.Score);
     }
 
@@ -96,8 +100,9 @@ public class GamePresenter : MonoBehaviour
     void GameOver()
     {
         Time.timeScale = 0f;
+        AudioManager.Instance.PlaySound(AudioManager.Instance._source, _gameOverClip);
         _gameOverView.ShowGameOver(_model.IsGameOver);
-        _gameOverView.CursorLock(!_model.IsGameOver);
+        _gameOverView.CursorLock(_model.IsGameOver);
         OnInputLockChanged?.Invoke(_model.IsGameOver);
     }
 
