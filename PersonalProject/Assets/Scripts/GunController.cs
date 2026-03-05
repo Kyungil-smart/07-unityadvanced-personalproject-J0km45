@@ -21,37 +21,33 @@ public class GunController : MonoBehaviour
     private Camera _camera;
     private Vector2 _mousePos;
     private IHittable _currentTarget;
-    private PlayerInputActions _inputActions;
     private Quaternion _originalGunPos;
+
+    [SerializeField] private PlayerInputController _input;
 
     private void Awake()
     {
         _model = new GunModel(_maxMagazine);
         _camera = Camera.main;
-        _inputActions = new PlayerInputActions();
         _originalGunPos = _gunPos.localRotation;
     }
 
     private void OnEnable()
     {
-        _inputActions.Enable();
-
-        _inputActions.Player.Point.performed += OnPoint;
-        _inputActions.Player.Fire.performed += OnFire;
-        _inputActions.Player.Reload.performed += OnReload;
-        _inputActions.Player.Aiming.performed += OnAiming;
-        _inputActions.Player.Aiming.canceled += AimingCancel;
+        _input.InputActions.Player.Point.performed += OnPoint;
+        _input.InputActions.Player.Fire.performed += OnFire;
+        _input.InputActions.Player.Reload.performed += OnReload;
+        _input.InputActions.Player.Aiming.performed += OnAiming;
+        _input.InputActions.Player.Aiming.canceled += AimingCancel;
     }
 
     private void OnDisable()
     {
-        _inputActions.Player.Point.performed -= OnPoint;
-        _inputActions.Player.Fire.performed -= OnFire;
-        _inputActions.Player.Reload.performed -= OnReload;
-        _inputActions.Player.Aiming.performed -= OnAiming;
-        _inputActions.Player.Aiming.canceled -= AimingCancel;
-
-        _inputActions.Disable();
+        _input.InputActions.Player.Point.performed -= OnPoint;
+        _input.InputActions.Player.Fire.performed -= OnFire;
+        _input.InputActions.Player.Reload.performed -= OnReload;
+        _input.InputActions.Player.Aiming.performed -= OnAiming;
+        _input.InputActions.Player.Aiming.canceled -= AimingCancel;
     }
 
     private void Update()

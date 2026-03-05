@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GamePresenter : MonoBehaviour
@@ -12,6 +13,7 @@ public class GamePresenter : MonoBehaviour
     private GameModel _model;
     private bool _isPaused;
     private bool _isEnd;
+    public event Action<bool> OnInputLockChanged;
 
     private void Awake()
     {
@@ -82,6 +84,7 @@ public class GamePresenter : MonoBehaviour
         Time.timeScale = _model.IsGamePause ? 0 : 1;
         _pauseView.ShowGamePause(_model.IsGamePause);
         _pauseView.CursorLock(!_model.IsGamePause);
+        OnInputLockChanged?.Invoke(_model.IsGamePause);
     }
 
     public void TogglePause()
@@ -94,7 +97,8 @@ public class GamePresenter : MonoBehaviour
     {
         Time.timeScale = 0f;
         _gameOverView.ShowGameOver(_model.IsGameOver);
-        _gameOverView.CursorLock(!_model.IsGameOver);   
+        _gameOverView.CursorLock(!_model.IsGameOver);
+        OnInputLockChanged?.Invoke(_model.IsGameOver);
     }
 
     void ShowGameResult()

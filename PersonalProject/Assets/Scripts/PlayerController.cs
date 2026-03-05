@@ -25,39 +25,34 @@ public class PlayerController : MonoBehaviour
     private Vector2 _rotationInput;
     private float _pitch;
 
-    private PlayerInputActions _inputActions;
+    [SerializeField] private PlayerInputController _input;
 
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
         _gun = GetComponent<GunController>();
-        _inputActions = new PlayerInputActions();
     }
 
     private void OnEnable()
     {
-        _inputActions.Enable();
-
-        _inputActions.Player.Move.performed += OnMove;
-        _inputActions.Player.Move.canceled += MoveCancel;
-        _inputActions.Player.Jump.performed += OnJump;
-        _inputActions.Player.Sprint.performed += OnSprint;
-        _inputActions.Player.Sprint.canceled += SprintCancel;
-        _inputActions.Player.Rotation.performed += OnRotation;
-        _inputActions.Player.Rotation.canceled += RotationCancel;
+        _input.InputActions.Player.Move.performed += OnMove;
+        _input.InputActions.Player.Move.canceled += MoveCancel;
+        _input.InputActions.Player.Jump.performed += OnJump;
+        _input.InputActions.Player.Sprint.performed += OnSprint;
+        _input.InputActions.Player.Sprint.canceled += SprintCancel;
+        _input.InputActions.Player.Rotation.performed += OnRotation;
+        _input.InputActions.Player.Rotation.canceled += RotationCancel;
     }
 
     private void OnDisable()
     {
-        _inputActions.Player.Move.performed -= OnMove;
-        _inputActions.Player.Move.canceled -= MoveCancel;
-        _inputActions.Player.Jump.performed -= OnJump;
-        _inputActions.Player.Sprint.performed -= OnSprint;
-        _inputActions.Player.Sprint.canceled -= SprintCancel;
-        _inputActions.Player.Rotation.performed -= OnRotation;
-        _inputActions.Player.Rotation.canceled -= RotationCancel;
-
-        _inputActions.Disable();
+        _input.InputActions.Player.Move.performed -= OnMove;
+        _input.InputActions.Player.Move.canceled -= MoveCancel;
+        _input.InputActions.Player.Jump.performed -= OnJump;
+        _input.InputActions.Player.Sprint.performed -= OnSprint;
+        _input.InputActions.Player.Sprint.canceled -= SprintCancel;
+        _input.InputActions.Player.Rotation.performed -= OnRotation;
+        _input.InputActions.Player.Rotation.canceled -= RotationCancel;
     }
 
     private void Update()
@@ -146,7 +141,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if(hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
+        if (hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
         {
             interactable.OnInteract(this);
         }
