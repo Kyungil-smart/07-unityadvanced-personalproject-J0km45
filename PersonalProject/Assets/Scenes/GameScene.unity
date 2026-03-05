@@ -7454,7 +7454,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 565001301}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1687872744}
+        m_TargetAssemblyTypeName: PauseController, Assembly-CSharp
+        m_MethodName: OnClickPause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &565001301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8319,7 +8331,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 629398113}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1687872745}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: OnClickTitle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &629398113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11185,7 +11209,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 821345482}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1687872745}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: OnClickRetry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &821345482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12017,7 +12053,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 871734097}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1687872745}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: OnClickRetry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &871734097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13774,10 +13822,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 871734095}
-  - {fileID: 629398111}
   - {fileID: 1088108701}
   - {fileID: 1614669891}
+  - {fileID: 871734095}
+  - {fileID: 629398111}
   m_Father: {fileID: 1687872741}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -18162,7 +18210,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1328071372}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1687872745}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: OnClickTitle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1328071372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18938,9 +18998,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f58588d81021240860348e31fd47a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamePresenter
-  _timeLimit: 90
+  _timeLimit: 10
   _scoreIncrement: 10
   _gameView: {fileID: 1687872742}
+  _pauseView: {fileID: 1687872746}
   _gameOverView: {fileID: 1687872743}
 --- !u!1001 &1385968362
 PrefabInstance:
@@ -22887,6 +22948,9 @@ GameObject:
   - component: {fileID: 1687872738}
   - component: {fileID: 1687872742}
   - component: {fileID: 1687872743}
+  - component: {fileID: 1687872746}
+  - component: {fileID: 1687872745}
+  - component: {fileID: 1687872744}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -22974,8 +23038,8 @@ RectTransform:
   - {fileID: 623790046}
   - {fileID: 1468190355}
   - {fileID: 1749259445}
-  - {fileID: 974842877}
   - {fileID: 151494044}
+  - {fileID: 974842877}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -23017,6 +23081,46 @@ MonoBehaviour:
   _resultPanel: {fileID: 974842876}
   _totalScore: {fileID: 1088108702}
   _bestScore: {fileID: 1614669892}
+--- !u!114 &1687872744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687872737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 392f810164e5ef345b3fd6a54800e193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseController
+  _presenter: {fileID: 1378779902}
+--- !u!114 &1687872745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687872737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 831b82030487de649914cce0970f4bd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
+  TitleSceneName: TitleScene
+  GameSceneName: GameScene
+--- !u!114 &1687872746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687872737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3354327df590b414eada23d5e102281a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseView
+  _pausePanel: {fileID: 151494043}
 --- !u!1001 &1691899380
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ public class GameModel
     public int Score { get; private set; }
     public float TimeLimit { get; private set; }
     public bool IsWaveStart { get; private set; }
+    public bool IsGamePause { get; private set; }
     public bool IsGameOver { get; private set; }
     private readonly int _scoreIncrement;
 
@@ -21,6 +22,11 @@ public class GameModel
     public void SetWaveStart(bool isWaveStart)
     {
         IsWaveStart = isWaveStart; 
+    }
+
+    public void TogglePause()
+    {
+        IsGamePause = !IsGamePause;
     }
 
     public void SetGameOver(bool isGameOver)

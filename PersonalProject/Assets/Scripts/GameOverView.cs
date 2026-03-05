@@ -7,7 +7,6 @@ public class GameOverView : MonoBehaviour
     [SerializeField] private TMP_Text _totalScore;
     [SerializeField] private TMP_Text _bestScore;
 
-
     public void ShowGameOver(bool isGameOver)
     {
         _resultPanel.SetActive(isGameOver);

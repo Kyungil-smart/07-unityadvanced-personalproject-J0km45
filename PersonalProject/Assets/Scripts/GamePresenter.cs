@@ -6,9 +6,11 @@ public class GamePresenter : MonoBehaviour
     [SerializeField] private int _scoreIncrement = 10; // 점수증가량
 
     [SerializeField] private GameView _gameView;
+    [SerializeField] private PauseView _pauseView;
     [SerializeField] private GameOverView _gameOverView;
 
     private GameModel _model;
+    private bool _isPaused;
     private bool _isEnd;
 
     private void Awake()
@@ -23,9 +25,15 @@ public class GamePresenter : MonoBehaviour
 
     private void Update()
     {
-        if (_model.IsWaveStart)
+        if (_model.IsWaveStart && !_model.IsGamePause)
         {
             UpdateTime();
+        }
+
+        if(_model.IsGamePause != _isPaused)
+        {
+            GamePause();
+            _isPaused = _model.IsGamePause;
         }
 
         if (_model.IsGameOver && !_isEnd)
@@ -67,6 +75,19 @@ public class GamePresenter : MonoBehaviour
         }
 
         _gameView.UpdateTime(_model.TimeLimit);
+    }
+
+    void GamePause()
+    {
+        Time.timeScale = _model.IsGamePause ? 0 : 1;
+        _pauseView.ShowGamePause(_model.IsGamePause);
+        _pauseView.CursorLock(!_model.IsGamePause);
+    }
+
+    public void TogglePause()
+    {
+        if (_model.IsGameOver) return;
+        _model.TogglePause();
     }
 
     void GameOver()
