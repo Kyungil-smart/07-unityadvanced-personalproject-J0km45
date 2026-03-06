@@ -1,1 +1,63 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=22871665&assignment_repo_type=AssignmentRepo)
+# 🎮 Target Rush
+
+![GameScreenShot](./images/Title.png)
+
+![GameScreenShot](./images/Playing.png)
+
+![GameScreenShot](./images/GameOver.png)
+
+---
+
+## 📋 개요
+
+* **장르**: `FPS 슈팅 게임`
+* **플레이타임**: 약 2분
+* **개발 환경**: `Unity 6000.3.9f1`
+* **플랫폼**: `Windows`
+* **프로젝트 기간**: 2026.02.26 ~ 2026.03.06 (1주일)
+
+---
+
+## ✨ 게임 특징 (Features)
+
+제한 시간 안에 맵을 돌아다니며, 등장하는 타겟을 맞춰 점수를 획득하는 방식으로 진행된다.
+
+---
+
+### 핵심 메커니즘 1: [타겟 사격]
+
+- 플레이어가 조준과 사격을 통해 타겟을 맞추는 방식
+
+### 핵심 메커니즘 2: [랜덤 타겟 스폰 시스템]
+
+- 맵의 여러 위치에서 타겟이 랜덤하게 생성되어, 플레이어가 탐색하며 발견해야함
+
+### 핵심 메커니즘 3: [제한 시간 점수 시스템]
+
+- 제한 시간 내에 타겟을 맞춰 점수를 획득하는 타임 어택 방식
+- 최고 점수를 갱신하면 기록을 저장
+
+---
+
+## 🕹️ 플레이 방법 (Controls)
+- 빨간 버튼을 밟으면 게임 시작
+
+### 조작법
+
+| 동작 | 키 바인딩 |
+| :---: | :---: |
+| **이동** | `W`, `A`, `S`, `D` |
+| **달리기** | `Left Shift` |
+| **점프** | `Space` |
+| **사격** | `LMB` |
+| **조준** | `RMB` |
+| **장전** | `R` |
+| **일시정지** | `Esc` |
+
+---
+
+## 💻 실행 환경 (Environment)
+
+* **Engine**: Unity 6000.3.9f1
+* **Platform**: Windows 10/11
+* **Resolution**: 1920 x 1080 (Recommended)
