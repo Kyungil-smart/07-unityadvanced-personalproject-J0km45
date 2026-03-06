@@ -5,25 +5,21 @@ public class PauseController : MonoBehaviour
 {
     [SerializeField] private GamePresenter _presenter;
 
-    private PlayerInputActions _inputActions;
+    [SerializeField] private PlayerInputController _input;
 
     private void Awake()
     {
-        _inputActions = new PlayerInputActions();
+        _input.Init();
     }
 
     private void OnEnable()
     {
-        _inputActions.Enable();
-
-        _inputActions.UI.Pause.performed += OnPause;
+        _input.InputActions.UI.Pause.performed += OnPause;
     }
 
     private void OnDisable()
     {
-        _inputActions.UI.Pause.performed -= OnPause;
-
-        _inputActions.Disable();
+        _input.InputActions.UI.Pause.performed -= OnPause;
     }
 
     void OnPause(InputAction.CallbackContext ctx)

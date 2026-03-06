@@ -125,3 +125,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3be43a139f12a34f958907296c406d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Target
+  _source: {fileID: 0}
+  _bombClip: {fileID: 8300000, guid: 1fa007cb95f680d4995e983fb10ea640, type: 3}

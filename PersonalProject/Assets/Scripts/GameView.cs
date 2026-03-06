@@ -25,6 +25,11 @@ public class GameView : MonoBehaviour
         int seconds = timeint % 60;
 
         _timeText.text = $"{minutes:D2}:{seconds:D2}";
+
+        if (timeint <= 10)
+            _timeText.color = Color.red;
+        else
+            _timeText.color = Color.white;
     }
 
     public void UpdateMagazine(int curMagazine, int maxMagazine)
