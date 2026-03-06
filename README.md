@@ -1,10 +1,10 @@
 # 🎮 Target Rush
 
-![GameScreenShot](./images/Title.png)
+![GameScreenShot](./Images/Title.png)
 
-![GameScreenShot](./images/Playing.png)
+![GameScreenShot](./Images/Playing.png)
 
-![GameScreenShot](./images/GameOver.png)
+![GameScreenShot](./Images/GameOver.png)
 
 ---
 
